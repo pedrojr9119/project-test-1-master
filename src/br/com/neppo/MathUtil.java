@@ -24,9 +24,14 @@ public class MathUtil {
 		
 		// Converter para list
 		List<Integer> list = Arrays.stream(ints).boxed().collect(Collectors.toList());
-		// Retira todos os números maiores que "sum" e ordena
-		list = list.stream().filter(item -> item < sum).sorted().collect(Collectors.toList());
+		
+		if (list.stream().filter(item -> item < 0).count() > 0) {
+			list = list.stream().sorted().collect(Collectors.toList());
+		} else {
+			list = list.stream().filter(item -> item < sum).sorted().collect(Collectors.toList());
+		}
 
+		
 		int posicaoElemento = 0;
 		int tamanhoSubList = 1;
 
